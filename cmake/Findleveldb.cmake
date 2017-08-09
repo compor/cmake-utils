@@ -33,8 +33,8 @@ set(LIBRARY_PREFIX "libleveldb")
 set(sharedlibs)
 set(staticlibs)
 
-list(APPEND sharedlibs "libleveldb.so")
-list(APPEND staticlibs "libleveldb.a")
+list(APPEND sharedlibs "${LIBRARY_PREFIX}.so")
+list(APPEND staticlibs "${LIBRARY_PREFIX}.a")
 
 if(LEVELDB_ROOT)
   file(TO_CMAKE_PATH ${LEVELDB_ROOT} LEVELDB_ROOT)

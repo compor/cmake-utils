@@ -33,9 +33,9 @@ set(LIBRARY_PREFIX "libjemalloc")
 set(sharedlibs)
 set(staticlibs)
 
-list(APPEND sharedlibs "libjemalloc.so")
-list(APPEND staticlibs "libjemalloc_pic.a")
-list(APPEND staticlibs "libjemalloc.a")
+list(APPEND sharedlibs "${LIBRARY_PREFIX}.so")
+list(APPEND staticlibs "${LIBRARY_PREFIX}_pic.a")
+list(APPEND staticlibs "${LIBRARY_PREFIX}.a")
 
 if(JEMALLOC_ROOT)
   file(TO_CMAKE_PATH ${JEMALLOC_ROOT} JEMALLOC_ROOT)
