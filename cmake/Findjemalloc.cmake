@@ -24,6 +24,11 @@
 #   JEMALLOC_INCLUDE_DIR      - Preferred include directory
 #   JEMALLOC_SHARED_LIBRARY   - Preferred shared library
 #   JEMALLOC_STATIC_LIBRARY   - Preferred static library
+#
+# The following targets are also defined::
+#
+#   Jemalloc        - Interface target for this shared library
+#   Jemalloc_static - Interface target for this static library
 
 #=============================================================================
 
@@ -87,5 +92,21 @@ if(JEMALLOC_FOUND)
   set(JEMALLOC_INCLUDE_DIRS ${JEMALLOC_INCLUDE_DIR})
   set(JEMALLOC_STATIC_LIBRARIES ${JEMALLOC_STATIC_LIBRARY})
   set(JEMALLOC_SHARED_LIBRARIES ${JEMALLOC_SHARED_LIBRARY})
+
+  set(TRGT_NAME1 "Jemalloc")
+
+  if(NOT TARGET ${TRGT_NAME1})
+    add_library(${TRGT_NAME1} INTERFACE)
+    target_include_directories(${TRGT_NAME1} INTERFACE ${JEMALLOC_INCLUDE_DIRS})
+    target_link_libraries(${TRGT_NAME1} INTERFACE ${JEMALLOC_SHARED_LIBRARIES})
+  endif()
+
+  set(TRGT_NAME2 "Jemalloc_static")
+
+  if(NOT TARGET ${TRGT_NAME2})
+    add_library(${TRGT_NAME2} INTERFACE)
+    target_include_directories(${TRGT_NAME2} INTERFACE ${JEMALLOC_INCLUDE_DIRS})
+    target_link_libraries(${TRGT_NAME2} INTERFACE ${JEMALLOC_STATIC_LIBRARIES})
+  endif()
 endif()
 
