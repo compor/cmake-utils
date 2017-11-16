@@ -27,4 +27,5 @@ include(attach_compilation_db)
 include(format_check)
 include(get_version)
 include(set_policies)
+include(add_cleanall_target)
 
