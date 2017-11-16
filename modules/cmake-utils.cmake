@@ -20,9 +20,9 @@ string(CONCAT CMAKE_UTIL_VERSION
 
 
 include(FindPythonModule)
-include(FindLLVMPolly)
-include(Findjemalloc)
-include(Findleveldb)
+#include(FindLLVMPolly)
+#include(Findjemalloc)
+#include(Findleveldb)
 include(attach_compilation_db)
 include(format_check)
 include(get_version)
