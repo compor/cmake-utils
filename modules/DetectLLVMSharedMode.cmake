@@ -48,7 +48,7 @@ function(detect_llvm_shared_mode)
     message(FATAL_ERROR "LLVM_VERSION mandatory argument is missing")
   endif()
 
-  string(REGEX MATCH "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+  string(REGEX MATCH "^[0-9]+\\.[0-9]+\\.[0-9]+.*$"
     LLVM_VERSION_CHECK "${LLVM_VERSION}")
 
   if(NOT ${LLVM_VERSION} STREQUAL ${LLVM_VERSION_CHECK})
