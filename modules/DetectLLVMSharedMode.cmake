@@ -24,7 +24,8 @@ include(CMakeParseArguments)
 # LLVM version string in the form of "[MAJOR].[MINOR].[PATCH]". This version
 # strings can be provided by the CMake LLVM infrastructure after including the
 # ``AddLLVM`` CMake file in your project. See the `LLVM documentation
-# <https://llvm.org/docs/CMake.html>`_.
+# <https://llvm.org/docs/CMake.html>`_. The usual name of the string defined is
+# ``LLVM_PACKAGE_VERSION``.
 #
 # Under the hood, the function is trying to find
 # ``llvm-config[-[MAJOR].[MINOR]]`` exposed in ``PATH`` environment variable,
