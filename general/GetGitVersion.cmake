@@ -2,16 +2,20 @@
 
 include(CMakeParseArguments)
 
-
 function(get_git_version)
   set(options SHORT)
   set(oneValueArgs VERSION)
   set(multiValueArgs)
 
-  cmake_parse_arguments(get_version "${options}" "${oneValueArgs}"
+  cmake_parse_arguments(GGV "${options}" "${oneValueArgs}"
     "${multiValueArgs}" ${ARGN})
 
-  if(get_version_SHORT)
+  if(GGV_UNPARSED_ARGUMENTS)
+    message(FATAL_ERROR
+      "${GGV_UNPARSED_ARGUMENTS} extraneous arguments provided")
+  endif()
+
+  if(GGV_SHORT)
     set(cmd_arg "--abbrev=0")
   else()
     set(cmd_arg "--long")
@@ -28,6 +32,6 @@ function(get_git_version)
     set(ver "0.0.0")
   endif()
 
-  set(${get_version_VERSION} "${ver}" PARENT_SCOPE)
+  set(${GGV_VERSION} "${ver}" PARENT_SCOPE)
 endfunction()
 

@@ -15,8 +15,9 @@ function(attach_compilation_db)
     message(FATAL_ERROR "${ACDB_TARGET} is not a target")
   endif()
 
-  if(ARGN)
-    message(FATAL_ERROR "extraneous arguments provided")
+  if(ACDB_UNPARSED_ARGUMENTS)
+    message(FATAL_ERROR
+      "${ACDB_UNPARSED_ARGUMENTS} extraneous arguments provided")
   endif()
 
   set(DBFILE "compile_commands.json")

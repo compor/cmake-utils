@@ -18,8 +18,9 @@ function(add_clean_all_target)
     message(FATAL_ERROR "Target ${ACAT_TARGET} already exists")
   endif()
 
-  if(ARGN)
-    message(FATAL_ERROR "extraneous arguments provided")
+  if(ACAT_UNPARSED_ARGUMENTS)
+    message(FATAL_ERROR
+      "${ACAT_UNPARSED_ARGUMENTS} extraneous arguments provided")
   endif()
 
   add_custom_target(clean_all

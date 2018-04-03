@@ -48,8 +48,9 @@ function(detect_llvm_shared_mode)
     message(FATAL_ERROR "LLVM_VERSION mandatory argument is missing")
   endif()
 
-  if(ARGN)
-    message(FATAL_ERROR "extraneous arguments provided")
+  if(DLSM_UNPARSED_ARGUMENTS)
+    message(FATAL_ERROR
+      "${DLSM_UNPARSED_ARGUMENTS} extraneous arguments provided")
   endif()
 
   string(REGEX MATCH "^[0-9]+\\.[0-9]+\\.[0-9]+.*$"
