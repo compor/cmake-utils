@@ -3,7 +3,7 @@
 include(CMakeParseArguments)
 
 
-function(get_version)
+function(get_git_version)
   set(options SHORT)
   set(oneValueArgs VERSION)
   set(multiValueArgs)
