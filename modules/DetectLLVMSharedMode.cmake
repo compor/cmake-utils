@@ -37,15 +37,19 @@ function(detect_llvm_shared_mode)
   set(oneValueArgs SHARED_MODE LLVM_VERSION)
   set(multiValueArgs)
 
-  cmake_parse_arguments(detect_mode "${options}" "${oneValueArgs}"
+  cmake_parse_arguments(DLSM "${options}" "${oneValueArgs}"
     "${multiValueArgs}" ${ARGN})
 
-  if(NOT detect_mode_SHARED_MODE)
+  if(NOT DLSM_SHARED_MODE)
     message(FATAL_ERROR "SHARED_MODE mandatory argument is missing")
   endif()
 
-  if(NOT detect_mode_LLVM_VERSION)
+  if(NOT DLSM_LLVM_VERSION)
     message(FATAL_ERROR "LLVM_VERSION mandatory argument is missing")
+  endif()
+
+  if(ARGN)
+    message(FATAL_ERROR "extraneous arguments provided")
   endif()
 
   string(REGEX MATCH "^[0-9]+\\.[0-9]+\\.[0-9]+.*$"
@@ -55,7 +59,7 @@ function(detect_llvm_shared_mode)
     message(FATAL_ERROR "LLVM_VERSION is malformatted")
   endif()
 
-  set(LLVM_VERSION "${detect_mode_LLVM_VERSION}")
+  set(LLVM_VERSION "${DLSM_LLVM_VERSION}")
 
   set(CONFIG_TOOL "llvm-config")
   set(mode "static")
@@ -127,6 +131,6 @@ function(detect_llvm_shared_mode)
     message(FATAL_ERROR "Cannot determine shared mode")
   endif()
 
-  set(${detect_mode_SHARED_MODE} "${mode}" PARENT_SCOPE)
+  set(${DLSM_SHARED_MODE} "${mode}" PARENT_SCOPE)
 endfunction()
 
