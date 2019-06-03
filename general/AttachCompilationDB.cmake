@@ -25,6 +25,11 @@ function(attach_compilation_db)
   get_target_property(TRGT_TYPE ${ACDB_TARGET} TYPE)
   file(TO_CMAKE_PATH "${CMAKE_SOURCE_DIR}/${DBFILE}" GENERATED_FILE)
 
+  if(NOT EXISTS ${DBFILE})
+    message(WARNING "File ${DBFILE} does not exist")
+    return()
+  endif()
+
   if(${TRGT_TYPE} STREQUAL "INTERFACE_LIBRARY")
     add_custom_command(OUTPUT ${GENERATED_FILE}
       COMMAND ${CMAKE_COMMAND}
